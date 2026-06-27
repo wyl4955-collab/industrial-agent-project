@@ -1,0 +1,21 @@
+# Core — Agent Framework
+langchain>=1.0
+langgraph>=1.0
+langchain-openai>=0.3
+
+# Vision Module (视觉组)
+torch>=2.0
+opencv-python>=4.8
+ultralytics>=8.0      # YOLOv8
+matplotlib>=3.7
+scipy>=1.10
+
+# NLP Module (语言组)
+transformers>=4.40
+sentencepiece>=0.2
+
+# Simulation (仿真组)
+# pybullet>=3.2       # Uncomment when starting simulation work
+
+# Dev
+pytest>=8.0
