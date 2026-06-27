@@ -11,7 +11,8 @@ AgentState 是在 LangGraph 节点间流动的唯一数据载体。
   3. 字段名与 types.py 中数据类的字段名一致, 转换时零心智负担
 """
 
-from typing import TypedDict
+import operator
+from typing import Annotated, TypedDict
 
 
 class PipelineAgentState(TypedDict, total=False):
@@ -30,7 +31,7 @@ class PipelineAgentState(TypedDict, total=False):
     # ── 视觉模块写入 ──────────────────────────────────
     scene_id: str                   # 场景标识
     detected_objects: list[dict]    # [DetectedObject.to_dict()]
-    frame_size: tuple[int, int]     # (w, h)
+    frame_size: tuple[int, int]     # (w, h) — 图像分辨率, 视觉模块写入
 
     # ── 规划模块写入 ──────────────────────────────────
     task_id: str                    # 任务唯一 ID
@@ -42,5 +43,5 @@ class PipelineAgentState(TypedDict, total=False):
     overall_status: str             # TaskStatus.value
     error_message: str | None       # 错误信息
 
-    # ── 执行日志 (跨越多个节点的记录) ─────────────────
-    logs: list[str]                 # 全流程日志
+    # ── 执行日志 (Annotated + add = 追加而非覆盖) ─────
+    logs: Annotated[list[str], operator.add]

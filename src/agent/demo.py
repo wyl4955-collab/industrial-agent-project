@@ -8,6 +8,8 @@
 后续各模块开发完成后, 只需替换 mock 函数为真实实现即可。
 """
 
+import re
+
 from langgraph.graph import StateGraph, END
 
 from .state import PipelineAgentState
@@ -45,7 +47,7 @@ def nlp_node(state: PipelineAgentState) -> dict:
     if "拿" in text or "放" in text or "搬" in text:
         if "从" in text:
             parsed.intent = ActionType.MOVE
-        elif "放到" in text or "放到" in text:
+        elif "放到" in text:
             parsed.intent = ActionType.MOVE
         else:
             parsed.intent = ActionType.PICK
@@ -71,7 +73,6 @@ def nlp_node(state: PipelineAgentState) -> dict:
             break
 
     # 目标位置
-    import re
     bin_match = re.search(r"(\d+)\s*号", text)
     if bin_match:
         parsed.target_location = LocationSpec(

@@ -28,9 +28,13 @@ from .types import (
     TaskStatus,
 )
 from .state import PipelineAgentState
+from .interfaces import BIN_POSITIONS, PRIMITIVES
 
 __all__ = [
     "PipelineAgentState",
+    # Constants
+    "BIN_POSITIONS",
+    "PRIMITIVES",
     # Enums
     "ActionType",
     "ObjectClass",

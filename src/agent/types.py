@@ -16,8 +16,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from enum import Enum, auto
-from typing import TypedDict
+from enum import Enum
 
 # ═══════════════════════════════════════════════════════════════════
 # 枚举 — 统一的动作/物体/状态词汇表
